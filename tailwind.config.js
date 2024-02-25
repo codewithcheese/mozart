@@ -2,7 +2,11 @@
 module.exports = {
   content: ["./src/**/*.{html,js,jsx,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        body: ["Inter Variable", "sans-serif"],
+      },
+    },
   },
-  plugins: [require("@tailwindcss/forms")],
+  plugins: [require("flowbite/plugin")],
 };
