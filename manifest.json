@@ -1,0 +1,15 @@
+{
+    "manifest_version": 3,
+    "name": "Mozart",
+    "version": "1.0.0",
+    "background": {
+        "service_worker": "./src/background.js"
+    },
+    "action": {
+
+    },
+    "permissions": ["tabs", "activeTab", "scripting", "storage", "userScripts"],
+    "host_permissions": [
+        "<all_urls>"
+    ]
+}
