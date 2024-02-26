@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "@codemirror/lang-javascript": "^6.2.2",
-    "@crxjs/vite-plugin": "^1.0.14",
     "@fontsource-variable/inter": "^5.0.16",
     "@types/lodash": "^4.14.200",
     "@uiw/react-codemirror": "^4.21.23",
@@ -21,6 +20,7 @@
     "react-router-dom": "^6.22.1"
   },
   "devDependencies": {
+    "@crxjs/vite-plugin": "2.0.0-beta.23",
     "@tailwindcss/forms": "^0.5.7",
     "@types/chrome": "^0.0.261",
     "@types/react": "^18.2.56",

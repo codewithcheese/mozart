@@ -72,3 +72,29 @@ export async function loadSites() {
   ({ sites } = await chrome.storage.sync.get("sites"));
   return sites;
 }
+
+export async function registerScripts() {
+  console.log("Registering scripts...");
+  // @ts-expect-error no types for userScripts
+  let ids = (await chrome.userScripts.getScripts()).map((s) => s.id);
+  console.log("Already registered:", ids);
+  const { sites } = await chrome.storage.sync.get("sites");
+  const scripts = sites
+    .filter((site: Site) => !ids.includes(site.id))
+    .map((site: Site) => createUserScript(site));
+  // registering one-by-one and catching errors
+  // due to unexpected duplicate script id
+  // even though the id is not present in the original get scripts
+  for (const script of scripts) {
+    console.log("Registering:", script.id);
+    try {
+      // @ts-expect-error no types for userScripts
+      await chrome.userScripts.register([script]);
+    } catch (e) {
+      console.error(e);
+    }
+  }
+  // @ts-expect-error no types for userScripts
+  ids = (await chrome.userScripts.getScripts()).map((s) => s.id);
+  console.log("Registered:", ids);
+}

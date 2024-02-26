@@ -6,7 +6,7 @@ import { createHashRouter, RouterProvider } from "react-router-dom";
 import { Prompt } from "./routes/prompt.tsx";
 import { Sites } from "./routes/settings.sites.tsx";
 import { Settings } from "./routes/settings.tsx";
-import { insertDefaultSites } from "./lib/site.ts";
+import { insertDefaultSites, registerScripts } from "./lib/site.ts";
 
 const router = createHashRouter([
   {
@@ -17,6 +17,7 @@ const router = createHashRouter([
       if (!sites) {
         await insertDefaultSites();
       }
+      await registerScripts();
       return null;
     },
     children: [
