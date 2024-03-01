@@ -15,13 +15,25 @@ export function script() {
     }
   });
 
-  function newChat() {
-    console.log("New chat");
-    window.location.href = "https://chat.openai.com/?model=gpt-4";
+  const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+  async function newChat() {
+    console.log("Mozart: New chat");
+    if (
+      document.querySelector("button") &&
+      document.querySelector("button").innerText.includes("sidebar")
+    ) {
+      console.log("Mozart: Clicking small screen new chat button");
+      document.querySelectorAll("button")[1].click();
+      await sleep(500);
+    } else {
+      console.log("Mozart: Navigating");
+      window.location.href = "https://chat.openai.com/?model=gpt-4";
+    }
   }
 
   function inputPrompt({ prompt }) {
-    console.log("Input prompt", prompt);
+    console.log("Mozart: Input prompt", prompt);
     const promptInput = document.querySelector("textarea#prompt-textarea");
     if (
       promptInput &&
@@ -34,21 +46,21 @@ export function script() {
       });
       promptInput.dispatchEvent(event); // Dispatch the event to the input
     } else {
-      alert("Prompt input not found.");
+      alert("Mozart: Prompt input not found.");
     }
   }
 
   function submitPrompt() {
-    console.log("Submit prompt");
+    console.log("Mozart: Submit prompt");
     const sendButton = document.querySelector(
       'button[data-testid="send-button"]',
     );
     if (sendButton) {
       sendButton.click();
     } else {
-      alert("Prompt submit button not found");
+      alert("Mozart: Prompt submit button not found");
     }
   }
 
-  console.log("ChatGPT Ready.");
+  console.log("Mozart: ChatGPT Ready.");
 }
