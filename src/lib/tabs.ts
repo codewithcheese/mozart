@@ -11,7 +11,7 @@ chrome.tabs.onUpdated.addListener(function (tabId, changeInfo) {
   }
 });
 
-export function waitForTabLoad(tabId: number, timeoutMs = 5_000) {
+export function waitForTabLoad(tabId: number, timeoutMs = 10_000) {
   return new Promise((resolve, reject) => {
     const pollInterval = 100;
 
