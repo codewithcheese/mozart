@@ -22,6 +22,7 @@ export async function submitPrompt(
   console.log("Submit prompt", tabId);
   if (newChat) {
     postMessageToUserScript(tabId, { type: "NEW_CHAT", ...data });
+    await sleep(100);
     await waitForTabLoad(tabId);
   }
   postMessageToUserScript(tabId, { type: "INPUT_PROMPT", ...data });
